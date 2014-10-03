@@ -45,7 +45,7 @@ listen.backlog = <%= @listen_backlog %>
 <% if @listen_type == 'socket' -%>
 ; Set permissions for unix socket, if one is used. In Linux, read/write
 ; permissions must be set in order to allow connections from a web server. Many
-; BSD-derived systems allow connections regardless of permissions. 
+; BSD-derived systems allow connections regardless of permissions.
 ; Default Values: user and group are set as the running user
 ;                 mode is set to 0666
     <% if @socket_owner -%>
@@ -58,7 +58,7 @@ listen.group = <%= @socket_group %>
 listen.mode = <%= @socket_mode %>
     <% end -%>
 <% end -%>
- 
+
 <% if @listen_type == 'tcp' and @allowed_clients -%>
 ; List of ipv4 addresses of FastCGI clients which are allowed to connect.
 ; Equivalent to the FCGI_WEB_SERVER_ADDRS environment variable in the original
@@ -185,7 +185,7 @@ pm.max_requests = <%= @pm_max_requests %>
 ;
 ; By default the status page only outputs short status. Passing 'full' in the
 ; query string will also return status for each pool process.
-; Example: 
+; Example:
 ;   http://www.foo.bar/status?full
 ;   http://www.foo.bar/status?json&full
 ;   http://www.foo.bar/status?html&full
@@ -235,7 +235,7 @@ pm.max_requests = <%= @pm_max_requests %>
 ; Note: The value must start with a leading slash (/). The value can be
 ;       anything, but it may not be a good idea to use the .php extension or it
 ;       may conflict with a real PHP file.
-; Default Value: not set 
+; Default Value: not set
 pm.status_path = <%= @pm_status_path %>
 <% end -%>
 
@@ -305,7 +305,7 @@ access.log = <%= @access_log %>
 ;      - ....
 ;  %p: PID of the child that serviced the request
 ;  %P: PID of the parent of the child that serviced the request
-;  %q: the query string 
+;  %q: the query string
 ;  %Q: the '?' character if query string exists
 ;  %r: the request URI (without the query string, see %q and %Q)
 ;  %R: remote IP address
@@ -341,41 +341,41 @@ request_slowlog_timeout = <%= @slowlog_timeout %>
 ; does not stop script execution for some reason. A value of '0' means 'off'.
 ; Available units: s(econds)(default), m(inutes), h(ours), or d(ays)
 ; Default Value: 0
- 
+
 request_terminate_timeout = <%= @terminate_timeout %>
 ; Set open file descriptor rlimit.
 ; Default Value: system defined value
 ;rlimit_files = 1024
- 
+
 ; Set max core size rlimit.
 ; Possible Values: 'unlimited' or an integer greater or equal to 0
 ; Default Value: system defined value
 ;rlimit_core = 0
- 
+
 <% if @chroot -%>
 ; Chroot to this directory at the start. This value must be defined as an
 ; absolute path. When this value is not set, chroot is not used.
 ; Note: you can prefix with '$prefix' to chroot to the pool prefix or one
 ; of its subdirectories. If the pool prefix is not set, the global prefix
 ; will be used instead.
-; Note: chrooting is a great security feature and should be used whenever 
+; Note: chrooting is a great security feature and should be used whenever
 ;       possible. However, all PHP paths will be relative to the chroot
 ;       (error_log, sessions.save_path, ...).
 ; Default Value: not set
 chroot = <%= @chroot %>
 <% end -%>
- 
+
 ; Chdir to this directory at the start.
 ; Note: relative path can be used.
 ; Default Value: current directory or / when chroot
 chdir = /
- 
+
 ; Redirect worker stdout and stderr into main error log. If not set, stdout and
 ; stderr will be redirected to /dev/null according to FastCGI specs.
 ; Note: on highloaded environement, this can cause some delay in the page
 ; process time (several ms).
 ; Default Value: no
-;catch_workers_output = yes
+catch_workers_output = <%= @catch_workers_output %>
 
 ; Limits the extensions of the main script FPM will allow to parse. This can
 ; prevent configuration mistakes on the web server side. You should only limit
@@ -383,8 +383,8 @@ chdir = /
 ; exectute php code.
 ; Note: set an empty value to allow all extensions.
 ; Default Value: .php
-;security.limit_extensions = .php .php3 .php4 .php5
- 
+security.limit_extensions = <%= @limit_extensions %>
+
 ; Pass environment variables like LD_LIBRARY_PATH. All $VARIABLEs are taken from
 ; the current environment.
 ; Default Value: clean env
@@ -404,7 +404,7 @@ chdir = /
 ; overwrite the values previously defined in the php.ini. The directives are the
 ; same as the PHP SAPI:
 ;   php_value/php_flag             - you can set classic ini defines which can
-;                                    be overwritten from PHP call 'ini_set'. 
+;                                    be overwritten from PHP call 'ini_set'.
 ;   php_admin_value/php_admin_flag - these directives won't be overwritten by
 ;                                     PHP call 'ini_set'
 ; For php_*flag, valid values are on, off, 1, 0, true, false, yes or no.
