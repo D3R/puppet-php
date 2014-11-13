@@ -19,7 +19,7 @@ define php::conf(
 
   $content_real = $content ? {
     undef   => undef,
-    default => template("${content}${file_name}.erb"),
+    default => $content,
   }
 
   $source_real = $source ? {

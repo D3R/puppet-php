@@ -23,7 +23,7 @@ define php::extra (
 
   $content_real = $content ? {
     undef   => undef,
-    default => template("${content}${file_name}.erb"),
+    default => $content,
   }
 
   file { $file_name:
