@@ -1,6 +1,7 @@
 define php::module(
   $ensure = present,
   $package_prefix = 'php5-',
+  $extension_lib_name = undef,
   $source = undef,
   $content = undef,
   $require = undef,
@@ -37,8 +38,12 @@ define php::module(
   }
 
   if undef == $source_real {
+    $extension_lib_name_real = $extension_lib_name ? {
+        undef   => "${name}.so",
+        default => $extension_lib_name,
+    }
     $content_real = $content ? {
-        undef   => "; Extension ${name}\nextension = ${name}.so\n",
+        undef   => "; Extension ${name}\nextension = ${extension_lib_name}\n",
         default => $content,
     }
   } else {
