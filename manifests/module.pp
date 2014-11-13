@@ -43,7 +43,7 @@ define php::module(
         default => $extension_lib_name,
     }
     $content_real = $content ? {
-        undef   => "; Extension ${name}\nextension = ${extension_lib_name}\n",
+        undef   => "; Extension ${name}\nextension = ${extension_lib_name_real}\n",
         default => $content,
     }
   } else {
