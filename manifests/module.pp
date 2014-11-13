@@ -36,9 +36,13 @@ define php::module(
     default => $source,
   }
 
-  $content_real = $content ? {
-    undef   => undef,
-    default => template("${content}${file_name}.erb"),
+  if undef == $source_real {
+    $content_real = $content ? {
+        undef   => "; Extension ${name}\nextension = ${name}.so\n",
+        default => $content,
+    }
+  } else {
+    $content_real = $content
   }
 
   file { $file_name:
