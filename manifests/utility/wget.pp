@@ -9,7 +9,7 @@ define php::utility::wget(
     #     name   => $package_name,
     # }
 
-    exec { "wget_$rand":
+    exec { "wget_$name":
         command => "$binary -q -O $destination $download_url",
         creates => $destination,
     }
