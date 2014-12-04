@@ -4,8 +4,9 @@ define php::utility::wget(
   $package_name = 'wget',
   $binary       = '/usr/bin/wget',
 ){
-    package { $package_name:
+    package { "wget_package_$name":
         ensure => present,
+        name => $package_name,
     }
 
     exec { "wget_$name":
