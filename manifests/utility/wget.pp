@@ -10,6 +10,6 @@ define php::utility::wget(
 
     exec { "wget_$name":
         command => "$binary -q -O $destination $download_url",
-        creates => $download_destination,
+        creates => $destination,
     }
 }

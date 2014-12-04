@@ -14,9 +14,9 @@ define php::utility::install(
     validate_string($group)
 
     php::utility::wget { $destination:
-        download_destination => $destination,
-        download_url         => $download_url,
-        before               => File[$destination],
+        destination  => $destination,
+        download_url => $download_url,
+        before       => File[$destination],
     }
 
     file { $destination:
