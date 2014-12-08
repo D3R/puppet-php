@@ -1,4 +1,5 @@
 define php::utility(
+    $ensure             = 'present',
     $destination_dir    = '/usr/local/bin',
     $download_url       = undef,
     $download_method    = 'wget',
@@ -13,6 +14,7 @@ define php::utility(
     $destination = "$destination_dir/$name"
 
     php::utility::install { $name:
+        ensure          => $ensure,
         destination     => $destination,
         download_method => $download_method,
         download_url    => $download_url,
@@ -21,11 +23,13 @@ define php::utility(
         group           => $group,
     }
 
-    php::utility::autoupdate { $name:
-        binary             => $destination,
-        autoupdate_command => $autoupdate_command,
-        autoupdate_hour    => $autoupdate_hour,
-        autoupdate_minute  => $autoupdate_minute,
-        require            => Php::Utility::Install[$name],
+    if 'present' == $ensure {
+        php::utility::autoupdate { $name:
+            binary             => $destination,
+            autoupdate_command => $autoupdate_command,
+            autoupdate_hour    => $autoupdate_hour,
+            autoupdate_minute  => $autoupdate_minute,
+            require            => Php::Utility::Install[$name],
+        }
     }
 }
