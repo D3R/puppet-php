@@ -1,4 +1,6 @@
-class php::params {
+class php::params (
+    $ensure = 'present',
+){
   case $::osfamily {
     debian: {
       $base_dir = '/etc/php5/'
