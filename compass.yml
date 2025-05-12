@@ -1,0 +1,15 @@
+name: puppet-php
+id: ari:cloud:compass:99f81cd3-6055-4ddd-97a3-655f84dd430a:component/a6a6633a-8303-46fd-94f0-c5635a90b6ba/e81d88c2-8725-434b-9380-869a49a1f22d
+description: Puppet module to manage php (Apache, CLI, FPM)
+configVersion: 1
+typeId: SERVICE
+fields:
+  tier: 4
+links: []
+relationships:
+  DEPENDS_ON: []
+labels:
+  - hound
+  - language:puppet
+  - source:github
+customFields: null
